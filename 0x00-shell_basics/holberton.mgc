@@ -1,1 +1,1 @@
-find . -iname \*HOLBERTON*\
+find . type f -iname \*HOLBERTON*\
