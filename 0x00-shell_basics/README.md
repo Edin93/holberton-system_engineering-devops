@@ -1,1 +1,1 @@
-- pwd: print current directory.
+linux commands.
