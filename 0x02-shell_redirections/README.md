@@ -1,0 +1,1 @@
+- learning about linux IO redirection.
