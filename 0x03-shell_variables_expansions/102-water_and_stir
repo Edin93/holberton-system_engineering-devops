@@ -1,2 +1,2 @@
 #!/bin/bash
-echo $(( behlnort#$WATER + beholnort#$STIR ))
+echo $(( behlnort#$WATER + behlnort#$STIR ))
