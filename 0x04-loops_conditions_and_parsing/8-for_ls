@@ -2,5 +2,5 @@
 # Displays the content of the current directory, in list format.
 cmd=$(ls)
 for i in $cmd;do
-    echo "$i"
+    echo "$i" | cut -f 2- -d '-'
 done
