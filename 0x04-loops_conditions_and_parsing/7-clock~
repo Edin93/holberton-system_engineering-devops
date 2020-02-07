@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# A script that displays the time for 12 hours and 59 minutes
+i=0
