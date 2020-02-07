@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Displays the content of the current directory, in list format.
+cmd=$(ls)
+for i in $cmd;do
+    echo "$i"
+done
