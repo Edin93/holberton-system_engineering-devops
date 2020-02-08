@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Groups visitors by IP and HTTP status code ordered in descending order of occurences.
+file="apache-access.log"
+awk '{print $1" "$9}' $file | sort | uniq -c | sort -n -r
