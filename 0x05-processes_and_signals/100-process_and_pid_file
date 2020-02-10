@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Create the holbertonscript.pid file, displays 'To infi.. beyond' indefinitely
+# Displays 'I hate the kill command' on SIGTERM signal.
+# Displays 'Y U no love me?' on SIGINT signal.
+# Delete the file holbertonscript.pid and ends itself on SIGQUIT or SIGTERM.
+FILE=/var/run/holbertonscript.pid
+sudo touch $FILE
+echo $$ > $FILE
+trap "echo Y U no love me?!" 2
+trap 'echo "I hate the kill command"; sudo rm -f $FILE; exit ' 15
+trap ' sudo rm -f $FILE; exit ' 3
+while true;do
+    echo "To infinity and beyond"
+done
