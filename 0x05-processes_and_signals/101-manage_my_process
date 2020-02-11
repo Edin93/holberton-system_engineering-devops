@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # Handle start, restart and stop options on manage_my_process process.
-# shellcheck disable=SC2086
 fn="/var/run/my_process.pid"
 pid="$(pgrep -f ./manage_my_process)"
 case "$1" in
@@ -10,12 +9,12 @@ case "$1" in
         echo "manage_my_process started"
         ;;
     stop)
-        kill $pid
+        kill "$pid"
         sudo rm -rf $fn
         echo "manage_my_process stopped"
         ;;
     restart)
-        kill $pid
+        kill "$pid"
         sudo rm -rf $fn
         ./manage_my_process &
         echo "$pid" > $fn
