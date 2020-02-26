@@ -7,4 +7,6 @@
 * cat split-me.txt | tr ';' \\n
 * echo {1..100}
 * find ./ -name '*.doc' -delete
+* find . -name '*.txt' -exec sed -i '/challenges\sare\sdifficult/d' {} \;
+* lines=(`cat "sum-me.txt"`); s=0; for line in "${lines[@]}"; do s=$((s + line)); done; echo $s
 * 
