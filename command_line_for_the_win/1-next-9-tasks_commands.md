@@ -6,4 +6,5 @@
 * cat access.log | grep GET | wc -l
 * cat split-me.txt | tr ';' \\n
 * echo {1..100}
+* find ./ -name '*.doc' -delete
 * 
