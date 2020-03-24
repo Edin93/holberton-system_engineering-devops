@@ -1,6 +1,6 @@
 # Create a manifesto that kills a process named killmenow.
-exec { 'kill_process_killmenow':
-path     => ['/usr/bin', '/sbin', '/bin', '/usr/sbin'],
-provider => 'shell',
+exec { 'killmenow':
+path     => '/usr/bin',
 command  => 'pkill killmenow',
+provider => 'shell',
 }
