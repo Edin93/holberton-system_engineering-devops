@@ -1,6 +1,6 @@
 #!/user/bin/env bash
 # ssh config file for the local ssh client.
 Host 34.73.58.10
-#   PasswordAuthentication yes
-#   IdentityFile ~/.ssh/id_dsa
-#   User ubuntu
+    PasswordAuthentication yes
+    IdentityFile ~/.ssh/id_dsa
+    User ubuntu
