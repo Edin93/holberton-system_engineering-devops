@@ -12,6 +12,6 @@ p1="\\\nfrontend http\n\tbind *:80\n\tdefault_backend webservers\n\n"
 p2="backend webservers\n\tserver 1067-web-01 35.243.129.178:80 check\n\t"
 p3="server 1067-web-02 3.91.29.66:80 check\n"
 newc=$p1$p2$p3
-sed -i -e "\$aENABLED=1" /etc/default/haproxy
-sed -i -e "\$a$newc" /etc/haproxy/haproxy.cfg
+sudo sed -i -e "\$aENABLED=1" /etc/default/haproxy
+sudo sed -i -e "\$a$newc" /etc/haproxy/haproxy.cfg
 sudo service haproxy restart
