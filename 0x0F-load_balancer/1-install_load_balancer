@@ -4,13 +4,14 @@
 # Distribute requests using a roundrobin algorithm
 # HAproxy can be managed via an init script
 sudo apt-get -y install software-properties-common
-sudo add-apt-repository ppa:vbernat/haproxy-2.0
+sudo add-apt-repository ppa:vbernat/haproxy-1.8
 sudo apt-get -y update
-sudo apt-get -y install haproxy=2.0.\*
+sudo apt-get -y install haproxy=1.8.\*
+sudo service haproxy start
 p1="\\\nfrontend http\n\tbind *:80\n\tdefault_backend webservers\n\n"
 p2="backend webservers\n\tserver 1067-web-01 35.243.129.178:80 check\n\t"
 p3="server 1067-web-02 3.91.29.66:80 check\n"
 newc=$p1$p2$p3
 sed -i -e "\$aENABLED=1" /etc/default/haproxy
 sed -i -e "\$a$newc" /etc/haproxy/haproxy.cfg
-sudo service haproxy start
+sudo service haproxy restart
