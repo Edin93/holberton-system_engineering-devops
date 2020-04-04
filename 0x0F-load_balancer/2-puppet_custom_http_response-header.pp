@@ -17,7 +17,6 @@ unless   => 'sudo apt-get -y install nginx',
 
 exec { 'restart_nginx':
 path     => ['/bin/', '/sbin/', '/usr/bin', '/usr/sbin'],
-command  => 'sudo service nginx restart',
 provider => 'shell',
-unless   => 'sed -i -e "/sendfile/i \\\tadd_header X-Served-By $HOSTNAME;" /etc/nginx/nginx.conf',
+command  => 'sed -i -e "/sendfile/i \\\tadd_header X-Served-By $HOSTNAME;" /etc/nginx/nginx.conf && sudo service nginx restart',
 }
