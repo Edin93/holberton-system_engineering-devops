@@ -19,8 +19,6 @@ global
         #  https://mozilla.github.io/server-side-tls/ssl-config-generator/?server=haproxy
         ssl-default-bind-ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:RSA+AESGCM:RSA+AES:!aNULL:!MD5:!DSS
         ssl-default-bind-options no-sslv3
-
-        # Configuration for SSL
         maxconn 2048
         tune.ssl.default-dh-param 2048
 
@@ -39,17 +37,8 @@ defaults
         errorfile 502 /etc/haproxy/errors/502.http
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
-
         option forwardfor
         option http-server-close
-
-frontend http
-        bind *:80
-        default_backend webservers
-
-backend webservers
-        server 1067-web-01 35.243.129.178:80 check
-        server 1067-web-02 3.91.29.66:80 check
 
 frontend www-http
          bind 3.88.180.52:80
@@ -69,4 +58,4 @@ backend www-backend
         server 1067-web-02 3.91.29.66:80 check
 
 backend letsencrypt-backend
-        server letsencrypt 127.0.0.1:54321
+        server letsencrypt 127.0.0.1:443
