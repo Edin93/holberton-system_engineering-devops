@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Runs whoami command under the user passed as an argument
+if [[ $# == 0 ]]; then
+    whoami
+elif [[ $# == 1 ]]; then
+    sudo -H -u "$1" bash -c "whoami"
+else
+    exit 0
+fi
