@@ -1,2 +1,29 @@
 #!/usr/bin/env bash
-#
+# Displays information about a domain and/or its subdomains.
+handle_args ()
+{
+    subdomains=("www" "lb-01" "web-01" "web-02")
+    for i in "${subdomains[@]}"
+    do
+	display $i $1
+    done
+}
+
+display ()
+{
+    path=$1.$2
+    sub=$1
+    dig $path | grep -A1 'ANSWER SECTION:' | tail -1 |\
+awk '{print "The subdomain '$sub' is a "$4" record and points to "$5""}'
+}
+
+if [[ $# == 2 ]]; then
+    path=$2.$1
+    sub=$2
+    dig "$path" | grep -A1 'ANSWER SECTION:' | tail -1 |\
+awk '{print "The subdomain '$sub' is a "$4" record and points to "$5""}'
+elif [[ $# == 1 ]]; then
+    handle_args $1
+else
+    exit 0
+fi
