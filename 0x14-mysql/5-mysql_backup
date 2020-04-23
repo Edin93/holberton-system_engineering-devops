@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Generate a MySQL dump and create a compressed archive out of it.
 if [[ $# -eq 1 ]]; then
-    currentDate=$(date +"%d-%m-%y")
-    mysqldump -u root -p "$1" --all-databases > backup.sql
+    currentDate=$(date +"%d-%m-%Y")
+    mysqldump -uroot -p"$1" --all-databases > backup.sql
     tar -czvf "$currentDate.tar.gz" backup.sql
 fi;
