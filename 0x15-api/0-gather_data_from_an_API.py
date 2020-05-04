@@ -17,14 +17,13 @@ if response.status_code == 200:
     tasks_done = 0
     all_tasks = 0
     content = response.json()
-    todos = requests.get("{}/{}/todos".format(url, user_id))
-    todos = todos.json()
+    todos = requests.get("{}/{}/todos".format(url, user_id)).json()
     all_tasks = len(todos)
     for task in todos:
         if task.get("completed", None):
-            tasks_done += 1
             tasks_done_list.append(task.get('title', ''))
-    print("{} is done with tasks({}/{}):".format(
+    tasks_done = len(tasks_done_list)
+    print("Employee {} is done with tasks({}/{}):".format(
         content.get('name', ""),
         tasks_done,
         all_tasks
