@@ -6,7 +6,6 @@ Module contains a function that returns informations about a requested employee
 
 import requests
 from sys import argv
-import json
 
 
 url = "https://jsonplaceholder.typicode.com/users"
