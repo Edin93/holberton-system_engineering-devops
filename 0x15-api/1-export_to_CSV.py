@@ -13,13 +13,13 @@ import csv
 def get_user_info():
     url = "https://jsonplaceholder.typicode.com/users"
     user_id = argv[1]
-    csv_file = user_id + ".csv"
     response = requests.get("{}/{}".format(url, user_id), verify=False)
     if response.status_code == 200:
         content = response.json()
         todos = requests.get("{}/{}/todos".format(url, user_id), verify=False)
         todos = todos.json()
-        with open(csv_file, 'w', newline='') as file:
+        file_name = '{}.csv'.format(content.get('id', 0))
+        with open(file_name, 'w', newline='') as file:
             writer = csv.writer(file, quoting=csv.QUOTE_ALL)
             for task in todos:
                 writer.writerow([
