@@ -24,10 +24,10 @@ if response.status_code == 200:
         if task.get("completed", None):
             tasks_done += 1
             tasks_done_list.append(task.get('title', ''))
-    print("{} is done with tasks({}/{})".format(
+    print("{} is done with tasks({}/{}):".format(
         content.get('name', ""),
         tasks_done,
         all_tasks
     ))
     for task in tasks_done_list:
-        print(task)
+        print("\t", task)
