@@ -5,14 +5,14 @@ into a CSV file, named USER_ID.csv, where USER_ID is the id of the sought user
 """
 
 
-import requests
-from sys import argv
 import csv
+import requests
+import sys
 
 
 def get_user_info():
     url = "https://jsonplaceholder.typicode.com/users"
-    user_id = argv[1]
+    user_id = sys.argv[1]
     response = requests.get("{}/{}".format(url, user_id), verify=False)
     if response.status_code == 200:
         content = response.json()
@@ -23,7 +23,7 @@ def get_user_info():
             writer = csv.writer(file, quoting=csv.QUOTE_ALL)
             for task in todos:
                 writer.writerow([
-                    user_id,
+                    int(user_id),
                     content.get('username', ''),
                     task.get('completed', False),
                     task.get('title', '')
