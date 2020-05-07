@@ -23,11 +23,10 @@ def number_of_subscribers(subreddit):
     try:
         res = requests.get(url, headers=headers, allow_redirects=False)
         content = res.json()
-        if res.status_code == 200:
-            children = content.get('data', 0).get('children', 0)
-            if children:
-                subreddit_subscribers = children[0].get('data', 0).get(
-                    'subscribers', 0)
+        children = content.get('data', 0).get('children', 0)
+        if children:
+            subreddit_subscribers = children[0].get('data', 0).get(
+                'subscribers', 0)
         return subreddit_subscribers
     except requests.exceptions.AttributeError as e:
         return 0
