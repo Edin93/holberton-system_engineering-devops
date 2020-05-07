@@ -5,6 +5,7 @@ given subreddit.
 """
 
 
+import json
 import requests
 
 
@@ -14,19 +15,10 @@ def number_of_subscribers(subreddit):
     Parameters:
     subreddit (string): subreddit to search for.
     """
-    subreddit_subscribers = 0
-    url = 'https://www.reddit.com/subreddits/search.json?q={}'.format(
-        subreddit)
+    url = 'https://www.reddit.com/r/{}/about/.json'.format(subreddit)
     headers = {
-        'User-agent': 'my custom user agent 1.0',
+        'User-Agent': 'my custom user agent 1.0',
     }
-    try:
-        res = requests.get(url, headers=headers, allow_redirects=False)
-        content = res.json()
-        children = content.get('data', 0).get('children', 0)
-        if children:
-            subreddit_subscribers = children[0].get('data', 0).get(
-                'subscribers', 0)
-        return subreddit_subscribers
-    except AttributeError:
-        return 0
+    res = requests.get(url, headers=headers)
+    content = res.json()
+    return content.get('data', 0).get('subscribers', 0)
