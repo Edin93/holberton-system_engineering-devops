@@ -20,11 +20,14 @@ def number_of_subscribers(subreddit):
     headers = {
         'User-Agent': 'my custom user agent 1.0',
     }
-    res = requests.get(url, headers=headers, allow_redirects=False)
-    content = res.json()
-    if res.status_code == 200:
-        children = content.get('data', None).get('children', None)
-        if children:
-            subreddit_subscribers = children[0].get('data', None).get(
-                'subscribers', None)
-    return subreddit_subscribers
+    try:
+        res = requests.get(url, headers=headers, allow_redirects=False)
+        content = res.json()
+        if res.status_code == 200:
+            children = content.get('data', 0).get('children', 0)
+            if children:
+                subreddit_subscribers = children[0].get('data', 0).get(
+                    'subscribers', 0)
+        return subreddit_subscribers
+    except requests.exceptions.AttributeError as e:
+        return 0
