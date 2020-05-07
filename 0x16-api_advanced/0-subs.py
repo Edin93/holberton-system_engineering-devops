@@ -5,7 +5,6 @@ given subreddit.
 """
 
 
-import json
 import requests
 
 
