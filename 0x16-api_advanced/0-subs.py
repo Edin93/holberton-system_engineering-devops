@@ -22,5 +22,5 @@ def number_of_subscribers(subreddit):
     try:
         content = res.json()
         return content.get('data', 0).get('subscribers', 0)
-    except AttributeError:
+    except ImportError:
         return 0
