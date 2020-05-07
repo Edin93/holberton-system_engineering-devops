@@ -1,42 +1,27 @@
 #!/usr/bin/python3
 """
-Module to query the Reddit API and returs the number of subscribers of a
-given subreddit.
+Module to query the Reddit API and prints the titles of the
+first 10 hot posts listed for a given subreddit.
 """
 
 
-import requests
 import json
+import requests
 
 
-def number_of_subscribers(subreddit):
-    """Returns the number of subscribers of a given subreddit.
-
-    Parameters:
-    subreddit (string): subreddit to search for.
+def top_ten(subreddit):
     """
-    url = 'https://www.reddit.com/r/{}/.json'.format(subreddit)
+    Queries the Reddit API and prints the titles of the
+    first 10 hot posts listed for a given subreddit.
+    """
+    url = 'https://www.reddit.com/r/{}/new/.json'.format(subreddit)
     headers = {
         'User-Agent': 'my custom user agent 1.0',
     }
-    res = requests.get(url, headers=headers, verify=False)
-    content = res.json()
-    #print(content)
-    #print('*****************************************')
-    #for i in res.__dict__:
-        #print('--------->>> {}'.format(i))
-        #print(json.dumps(getattr(res, i, None), indent=4, sort_keys=True))
-        #print('res[{}] = {}'.format(i, getattr(res, i, None)))
-        #print('-----------------------------------------------')
-    #print(json.dumps(res._content, indent=4, sort_keys=True))
-    if res.status_code == 200:
-        #print(json.dumps(content.get('data', None), indent=4, sort_keys=True))
-        #print(content)
-        print(
-            content.get('data', None)
-            .get('children', None)[0]
-            .get('data', None)
-            .get('subreddit_subscribers', None)
-        )
-        print('--------------------------')
-    return 0
+    res = requests.get(url, headers=headers)
+    try:
+        content = res.json()
+        for item in content.get('data').get('children')[0:10]:
+            print('{}'.format(item.get('data').get('title')))
+    except Exception as e:
+        print(None)
