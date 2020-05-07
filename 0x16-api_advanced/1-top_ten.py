@@ -17,10 +17,11 @@ def top_ten(subreddit):
     headers = {
         'User-Agent': 'my custom user agent 1.0',
     }
-    res = requests.get(url, headers=headers, allow_redirects=False)
+    params = {'limit': 10}
+    res = requests.get(url, headers=headers, params=params)
     try:
         content = res.json()
-        for item in content.get('data').get('children')[0:10]:
+        for item in content.get('data').get('children'):
             print('{}'.format(item.get('data').get('title')))
     except Exception as e:
         print(None)
