@@ -17,7 +17,7 @@ def top_ten(subreddit):
     headers = {
         'User-Agent': 'my custom user agent 1.0',
     }
-    res = requests.get(url, headers=headers)
+    res = requests.get(url, headers=headers, allow_redirects=False)
     try:
         content = res.json()
         for item in content.get('data').get('children')[0:10]:
