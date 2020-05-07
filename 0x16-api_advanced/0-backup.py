@@ -16,17 +16,15 @@ def number_of_subscribers(subreddit):
     subreddit (string): subreddit to search for.
     """
     subreddit_subscribers = 0
-    url = 'https://www.reddit.com/subreddits/search.json?q={}'.format(
-        subreddit)
+    url = 'https://www.reddit.com/r/{}/.json'.format(subreddit)
     headers = {
         'User-Agent': 'my custom user agent 1.0',
     }
-    res = requests.get(url, headers=headers, verify=False,
-                       allow_redirects=False)
+    res = requests.get(url, headers=headers, verify=False)
     content = res.json()
     if res.status_code == 200:
         children = content.get('data', None).get('children', None)
         if children:
             subreddit_subscribers = children[0].get('data', None).get(
-                'subscribers', None)
+                'subreddit_subscribers', None)
     return subreddit_subscribers
