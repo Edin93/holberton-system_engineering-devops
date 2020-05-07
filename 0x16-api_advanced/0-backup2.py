@@ -6,6 +6,7 @@ given subreddit.
 
 
 import requests
+import json
 
 
 def number_of_subscribers(subreddit):
@@ -20,7 +21,8 @@ def number_of_subscribers(subreddit):
     headers = {
         'User-Agent': 'my custom user agent 1.0',
     }
-    res = requests.get(url, headers=headers, allow_redirects=False)
+    res = requests.get(url, headers=headers, verify=False,
+                       allow_redirects=False)
     content = res.json()
     if res.status_code == 200:
         children = content.get('data', None).get('children', None)
