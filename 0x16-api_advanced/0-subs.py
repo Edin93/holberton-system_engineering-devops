@@ -28,5 +28,5 @@ def number_of_subscribers(subreddit):
             subreddit_subscribers = children[0].get('data', 0).get(
                 'subscribers', 0)
         return subreddit_subscribers
-    except requests.exceptions.AttributeError as e:
+    except AttributeError:
         return 0
