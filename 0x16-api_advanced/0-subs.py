@@ -18,7 +18,7 @@ def number_of_subscribers(subreddit):
     url = 'https://www.reddit.com/subreddits/search.json?q={}'.format(
         subreddit)
     headers = {
-        'User-Agent': 'my custom user agent 1.0',
+        'User-agent': 'my custom user agent 1.0',
     }
     try:
         res = requests.get(url, headers=headers, allow_redirects=False)
