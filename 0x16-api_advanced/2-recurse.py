@@ -32,6 +32,8 @@ def recurse(subreddit, hot_list=[], after=None):
     data = requests.get(
         get_url(subreddit, after), headers=headers
     ).json().get('data', None)
+    if (data is None):
+        return None
     hot_list += data.get('children', [])
     if (data.get('after', None) is not None):
         recurse(subreddit, hot_list, data.get('after', None))
