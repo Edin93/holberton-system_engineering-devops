@@ -29,10 +29,15 @@ def recurse(subreddit, hot_list=[], after=None):
     Return a list containing the titles of all hot
     articles for a given subreddit.
     """
-    data = requests.get(
-        get_url(subreddit, after), headers=headers
-    ).json().get('data', None)
+    data = requests.get(get_url(subreddit, after), headers=headers).json().get('data', None)
+    print(json.dumps(data, indent=4))
     hot_list += data.get('children', [])
     if (data.get('after', None) is not None):
         recurse(subreddit, hot_list, data.get('after', None))
-    return hot_list
+    else:
+        print('len of hot_list is:', len(hot_list))
+        return hot_list
+
+
+if (len(sys.argv) == 2):
+    recurse(sys.argv[1])
