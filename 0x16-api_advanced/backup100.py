@@ -7,6 +7,7 @@ by spaces. Javascript should count as javascript, but java should not).
 
 
 import json
+import re
 import requests
 import sys
 
@@ -20,7 +21,7 @@ def get_url(subreddit, after):
     """
     Return URL of subreddit to request.
     """
-    url = 'https://www.reddit.com/r/{}/.json?sort=hot&after={}'.format(
+    url = 'https://www.reddit.com/r/{}/.json?after={}'.format(
         subreddit, after)
     return url
 
@@ -35,16 +36,17 @@ def count_words(subreddit, word_list, after=None):
                         headers=headers).json().get('data', None)
     if (data is None):
         return None
-    for article in data.get('children', None):
+    for article in data.get('children', []):
         for word in word_list:
-            if word.upper() in article.get('data').get('title').upper():
+            pattern = r'(^|\s){}($|\s)'.format(word.lower())
+            matches = re.findall(pattern, article.get('data').get('title').lower())
+            if len(matches) > 0:
                 if word in topics:
-                    topics[word] += 1
+                    topics[word] += len(matches)
                 else:
-                    topics[word] = 1
+                    topics[word] = len(matches)
     if (data.get('after', None) is not None):
         count_words(subreddit, word_list, data.get('after', None))
     else:
-        sorted(topics.values())
-        for k, v in topics.items():
-            print(k, ':', v)
+        for k in sorted(topics, key=topics.get, reverse=True):
+            print(k, ':', topics[k])
