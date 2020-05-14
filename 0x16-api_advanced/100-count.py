@@ -48,5 +48,5 @@ def count_words(subreddit, word_list, after=None):
     if (data.get('after', None) is not None):
         count_words(subreddit, word_list, data.get('after', None))
     else:
-        for k in sorted(topics, key=topics.get, reverse=True):
+        for k in sorted(topics, key=lambda k: (-topics[k], k)):
             print('{}: {}'.format(k, topics[k]))
