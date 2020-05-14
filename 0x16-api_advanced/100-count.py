@@ -49,4 +49,4 @@ def count_words(subreddit, word_list, after=None):
         count_words(subreddit, word_list, data.get('after', None))
     else:
         for k in sorted(topics, key=topics.get, reverse=True):
-            print(k, ':', topics[k])
+            print('{}: {}'.format(k, topics[k]))
