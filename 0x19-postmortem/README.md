@@ -28,4 +28,7 @@ This outage was caused by the deletion of the whole database by a new intern who
 ## Corrective and preventative measures
 To prevent this kind of similar mistake, we must not give full access to everything in our platform to non-experienced developers and to work more on the accessibility to sensitive data and personalized algorithms and technical solutions.
 The technical team also needs to better communicate with the new interns about their technical backgrounds, what technologies are they more comfortable with, are they interested in working on a specific thing in the application and to advise them to not be afraid or shy to inform or ask the engineering team about something one's not sure or knowledgeable about.
-The Incident Postmortem Framework (image from atlassian.com)
+
+## Postmortem diagram
+Below is a image illustrating the incident diagram framework set by atlassian.
+[Postmortem Diagram](img.png)
