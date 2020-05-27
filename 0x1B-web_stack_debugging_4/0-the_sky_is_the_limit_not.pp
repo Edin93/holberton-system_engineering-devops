@@ -1,7 +1,7 @@
 # Configure Nginx to accept a load of requests simultaneously.
 exec { 'update_ulimit':
 path     => ['/bin/', '/sbin/', '/usr/bin/', '/usr/sbin/'],
-command  => 'sed -i "s/ULIMIT=\"-n 15\"/ULIMIT=\"-n 200\"/g" /etc/default/nginx',
+command  => 'sed -i "s/ULIMIT=\"-n 15\"/ULIMIT=\"-n 2000\"/g" /etc/default/nginx',
 provider => 'shell',
 }
 
